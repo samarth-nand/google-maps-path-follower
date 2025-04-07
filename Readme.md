@@ -33,9 +33,6 @@ A web application that allows users to traverse a path on Google Maps using Stre
    - Create an API key
    - Restrict the API key to these APIs for security
 
-2. **Configure the Application**:
-   - Open `config.js`
-   - Replace `YOUR_API_KEY` with your actual Google Maps API key
 
 3. **Deployment**:
    - Upload all files to your web server or host locally
@@ -79,3 +76,8 @@ Built with:
 - Google Directions API
 - Google Places API
 - Google Street View API
+
+## Known Bugs
+
+- App wont deploy on vite, > html error
+- CSS stylesheet wont load

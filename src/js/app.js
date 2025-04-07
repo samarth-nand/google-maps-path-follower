@@ -84,7 +84,7 @@ function updateProgressBar() {
     document.head.appendChild(script);
   }
   
-  function initMap() {
+  export function initMap() {
     // Initialize the map
     map = new google.maps.Map(document.getElementById('map'), {
       center: { lat: 40.758896, lng: -73.985130 }, // Times Square
@@ -203,7 +203,7 @@ function updateProgressBar() {
     });
   }
   
-  function calculateRoute() {
+  export function calculateRoute() {
     const startLocation = document.getElementById('start-location').value;
     const endLocation = document.getElementById('end-location').value;
     
@@ -228,10 +228,9 @@ function updateProgressBar() {
     
     // Add avoidance preferences if checked
     if (avoidHighways || avoidTolls || avoidFerries) {
-      request.avoidances = [];
-      if (avoidHighways) request.avoidances.push('highways');
-      if (avoidTolls) request.avoidances.push('tolls');
-      if (avoidFerries) request.avoidances.push('ferries');
+      if (avoidHighways) request.avoidHighways = true;
+      if (avoidTolls) request.avoidTolls = true;
+      if (avoidFerries) request.avoidFerries = true;
     }
     
     // For transit mode, we can add additional parameters
