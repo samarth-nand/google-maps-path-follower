@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Street View Route Navigator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="controls">
+    <div id="locations">
+      <div class="input-group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <input id="start-location" type="text" placeholder="Start location (e.g., Empire State Building, NY)" value="Times Square, New York, NY">
+      </div>
+      <div class="input-group">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <input id="end-location" type="text" placeholder="End location (e.g., Central Park, NY)" value="Empire State Building, New York, NY">
+      </div>
+      <button id="calculate-route">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+          <path d="M9 17H7A5 5 0 0 1 7 7h2"></path>
+          <path d="M15 7h2a5 5 0 0 1 0 10h-2"></path>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        Calculate Route
+      </button>
+    </div>
+    <div id="action-buttons">
+      <button id="start-journey">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Start Journey
+      </button>
+      <button id="stop-journey" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        Stop
+      </button>
+      <button id="prev-step" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button id="next-step" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <span id="speed-control">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Speed: 
+        <select id="speed-selector">
+          <option value="0.5">Slow</option>
+          <option value="1" selected>Normal</option>
+          <option value="2">Fast</option>
+          <option value="4">Very Fast</option>
+        </select>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+          <path d="M5 12h14"></path>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </span>
+    </div>
+    <div id="route-options">
+      <div class="option-group">
+        <label>Travel Mode</label>
+        <select id="travel-mode">
+          <option value="DRIVING" selected>Driving</option>
+          <option value="WALKING">Walking</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="TRANSIT">Transit</option>
+        </select>
+      </div>
+      <div class="option-group">
+        <label>Route Preferences</label>
+        <div id="route-preferences">
+          <label class="checkbox-container">
+            <input type="checkbox" id="avoid-highways">
+            Avoid Highways
+          </label>
+          <label class="checkbox-container">
+            <input type="checkbox" id="avoid-tolls">
+            Avoid Tolls
+          </label>
+          <label class="checkbox-container">
+            <input type="checkbox" id="avoid-ferries">
+            Avoid Ferries
+          </label>
+        </div>
+      </div>
+    </div>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+      <div id="progress-text" style="text-align: center; margin-top: 8px; font-size: 12px; color: var(--secondary-color);"></div>
+    </div>
+  </div>
+  <div id="container">
+    <div id="map"></div>
+    <div id="street-view"></div>
+  </div>
+
+  <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,places&callback=initMap" async defer></script>
+  <script src="app.js"></script>
+</body>
+</html>
