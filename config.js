@@ -1,8 +1,12 @@
+require('dotenv').config();
+
+// Load API key from environment variables
+const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 // Configuration settings for Street View Route Navigator
 const config = {
     // Google Maps API Configuration
     maps: {
-      apiKey: 'YOUR_API_KEY', // Replace with your actual API key
+      apiKey: apiKey,
       libraries: ['geometry', 'places'],
       defaultCenter: {
         lat: 40.758896, 
