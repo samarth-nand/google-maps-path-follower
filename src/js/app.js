@@ -37,13 +37,6 @@ function updateProgressBar() {
       })
       .catch(error => {
         console.error('Error fetching Maps API key:', error);
-        document.body.innerHTML = `
-          <div style="text-align: center; padding: 50px; color: red;">
-            <h2>Error Loading Maps</h2>
-            <p>Could not load Google Maps API. Please try again later.</p>
-            <p>Error details: ${error.message}</p>
-          </div>
-        `;
       });
   });
   
