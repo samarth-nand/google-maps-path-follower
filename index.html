@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="controls">
@@ -110,14 +109,12 @@
       <div id="progress-text" style="text-align: center; margin-top: 8px; font-size: 12px; color: var(--secondary-color);"></div>
     </div>
   </div>
+  </div>
   <div id="container">
     <div id="map"></div>
     <div id="street-view"></div>
   </div>
-
-  <!-- Google Maps API script will be loaded dynamically by app.js -->
-  <script src="config.js"></script>
-  <script src="utils.js"></script>
-  <script src="app.js"></script>
+  
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
