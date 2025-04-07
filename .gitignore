@@ -1,2 +1,46 @@
-# Ignore environment files
+# Environment variables
 .env
+
+# Node.js
+# Dependency directories
+node_modules/
+
+# Build directories
+dist/
+build/
+out-tsc/
+out-tsc-*/
+out-tsc-*/**
+
+# Temporary files
+*.tmp
+
+.hintrc
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Logs
+logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Distribution/build files
+dist/
+build/
